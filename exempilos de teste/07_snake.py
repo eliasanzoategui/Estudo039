@@ -17,6 +17,7 @@ from collections import deque, namedtuple
 from random import randint
 
 import pyxel
+import random
 
 Point = namedtuple("Point", ["x", "y"])  # Convenience class for coordinates
 
@@ -43,6 +44,7 @@ HEIGHT_SCORE = pyxel.FONT_HEIGHT
 COL_SCORE = 6
 COL_SCORE_BACKGROUND = 5
 
+
 UP = Point(0, -1)
 DOWN = Point(0, 1)
 RIGHT = Point(1, 0)
@@ -55,6 +57,14 @@ START = Point(5, 5 + HEIGHT_SCORE)
 # The game itself #
 ###################
 
+def cores(v1,v2,v3):
+    v1 = random.randint(0,15)
+    v2 = random.randint(0,15)
+    while v2 == v1:
+        v2 = random.randint(0,15)
+    v3 = random.randint(0,15)
+    while v3 == v2 or v3 == v1:
+        v3 = random.randint(0,15)
 
 class Snake:
     """The class that sets up and runs the game."""
@@ -63,6 +73,7 @@ class Snake:
         """Initiate pyxel, set up initial game variables, and run."""
 
         pyxel.init(WIDTH, HEIGHT, caption="Snake!", scale=8, fps=10)
+        self.contador = 0
         define_sound_and_music()
         self.reset()
         pyxel.run(self.update, self.draw)
@@ -127,8 +138,19 @@ class Snake:
 
         if self.snake[0] == self.apple:
             self.score += 1
+            self.contador += 1
             self.snake.append(self.popped_point)
             self.generate_apple()
+            self.contador += 1
+            if self.contador == 10:
+                COL_BACKGROUND = random.randint(0,15)
+                COL_BODY = random.randint(0,15)
+                while COL_BODY == COL_BACKGROUND:
+                    COL_BODY = random.randint(0,15)
+                COL_SCORE = random.randint(0,15)
+                while COL_SCORE == COL_BODY or COL_SCORE == COL_BACKGROUND:
+                    COL_SCORE = random.randint(0,15)
+                self.contador = 0
 
             pyxel.play(0, 0)
 
