@@ -9,6 +9,8 @@ class App:
         self.fruta1 = Entidade('moeda',random.randint(0,255),random.randint(0,255),0,0,10)
         self.personagem1 = Entidade('personagem',128,128,0,0,10)
         self.entidades = [self.criatura3,self.fruta1,self.personagem1]
+        self.telax = 0
+        self.telay = 0
         pyxel.run(self.update, self.draw)
         
 
@@ -24,20 +26,7 @@ class App:
                 if pyxel.btn(pyxel.KEY_RIGHT):
                     i.energiax += 1
         
-                for e in self.entidades:
-                    if i.tipo == 'personagem':
-                        if e.x > i.x and e.posiçãox and e.tipo == 'criatura':
-                            e.energiax -= 1
-                            e.posiçãox = False
-                        if e.x < i.x and e.posiçãox and e.tipo == 'criatura':
-                            e.energiax += 1
-                            e.posiçãox = False
-                        if e.y > i.y and e.posiçãoy and e.tipo == 'criatura':
-                            e.energiay -= 1
-                            e.posiçãoy = False
-                        if e.y < i.y and e.posiçãoy and e.tipo == 'criatura':
-                            e.energiay += 1
-                            e.posiçãoy = False
+                
 
                                  
                                
@@ -68,11 +57,22 @@ class App:
         pyxel.cls(0)
         for i in self.entidades:
             if i.tipo == 'personagem':
-                pyxel.rectb(i.x,i.y,1,1,11)
+                pyxel.rect(128 + 256,128,1,1,11)
+                pyxel.rect(128,128 + 256,1,1,11)
+                pyxel.rect(128 + 256,128 + 256,1,1,11)
+                pyxel.rect(128,128,1,1,11)
+
             if i.tipo == 'criatura':
-                pyxel.rect(i.x,i.y,1,1,9)
+                pyxel.rect(i.x - self.personagem1.x,i.y - self.personagem1.y,1,1,9)
+                pyxel.rect(i.x - self.personagem1.x + 256,i.y - self.personagem1.y,1,1,9)
+                pyxel.rect(i.x - self.personagem1.x,i.y - self.personagem1.y + 256,1,1,9)
+                pyxel.rect(i.x - self.personagem1.x + 256,i.y - self.personagem1.y + 256,1,1,9)
             if i.tipo == 'moeda':
                 pyxel.rect(i.x,i.y,1,1,10)
+                pyxel.rect(i.x + 256,i.y,1,1,10)
+                pyxel.rect(i.x,i.y + 256,1,1,10)
+                pyxel.rect(i.x + 256,i.y + 256,1,1,10)
+
               
 
 
