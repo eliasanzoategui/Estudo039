@@ -2,7 +2,7 @@
 # direções , mais, menos, esperar, aleatório
 import random
 
-class neu():
+class neuronio():
     def __init__(self,limiar,peso,bias,taxa):
         self.peso = peso
         self.limiar = limiar
