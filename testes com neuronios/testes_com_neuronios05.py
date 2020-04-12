@@ -3,11 +3,11 @@
 
 
 class neuronio():
-    def __init__(self,peso,bias,limiar,taxa_de_apreendisado):
+    def __init__(self,peso,bias,limiar,taxa_de_aprendizado):
         self.peso = peso
         self.bias = bias
         self.limiar = limiar
-        self.taxa_de_apreendisado = taxa_de_apreendisado
+        self.taxa_de_aprendizado = taxa_de_aprendizado
 
     def treino(self,entrada,resultado):
         camada_oculta = entrada * self.peso
@@ -17,13 +17,11 @@ class neuronio():
         else:
             saida = 0
         if saida > resultado:
-            self.peso = self.peso * (saida - resultado)
-            self.bias = self.bias * (saida - resultado)
+            self.peso -= self.taxa_de_aprendizado
         elif saida == resultado:
             pass
         else:
-            self.peso = self.peso * (resultado - saida)
-            self.bias = self.bias * (resultado - saida)
+            self.peso += self.taxa_de_aprendizado
 
     def teste(self,entrada,texto1,texto2):
         camada_oculta = entrada * self.peso
@@ -39,7 +37,7 @@ class neuronio():
 
 
 
-neuronio1 = neuronio(1,1,5,0.5)
+neuronio1 = neuronio(1,1,0,0.5)
 
 for i in range(0,100):
     neuronio1.treino(1,0)
@@ -54,4 +52,4 @@ for i in range(0,100):
     neuronio1.treino(10,1)
 
 
-neuronio1.teste(3,'é par','é impar')
+neuronio1.teste(7,'é par','é impar')
