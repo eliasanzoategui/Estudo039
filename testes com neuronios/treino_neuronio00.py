@@ -1,3 +1,7 @@
+'''
+Mudar esse programa para uma classe que me diga se um número é par ou não.
+'''
+
 import estrutura_neuronio
 import random
 
