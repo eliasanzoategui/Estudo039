@@ -12,13 +12,13 @@ import numpy as np
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
-def normalizer(x):
+def normalizador(x):
     if(x <= 0.5):
         return 0
     else:
         return 1
 
-def sigmoid_derivative(x):
+def sigmoid_derivativo(x):
     return x * (1 - x)
 
 '''
@@ -54,43 +54,43 @@ Proteina
 > 12     => 1
 '''
 
-training_inputs = np.array([[ 0, -1,  0,  0],
+entradas_de_treino = np.array([[ 0, -1,  0,  0],
                             [-1,  0, -1, -1],
                             [-1,  1, -1, -1],
                             [ 1,  1,  1,  1],
                             [ 1,  0,  1,  1]])
 
-training_outputs = np.array([[0,0,0,1,1]]).T
+saida_de_treino = np.array([[0,0,0,1,1]]).T
 
 np.random.seed(1)
 
-synaptic_weights = 2 * np.random.random((4, 1)) - 1
+pesos_sinapticos = 2 * np.random.random((4, 1)) - 1
 
 print('Synaptic weights initialized')
-print(synaptic_weights)
+print(pesos_sinapticos)
 
 for iteration in range(1):
-    input_layer = training_inputs
-    outputs = sigmoid(np.dot(input_layer, synaptic_weights))
-    error = training_outputs - outputs
-    adjustments = error * sigmoid_derivative(outputs)
-    synaptic_weights += np.dot(input_layer.T, adjustments)
+    camada_de_entrada = entradas_de_treino
+    saida = sigmoid(np.dot(camada_de_entrada, pesos_sinapticos))
+    erro = saida_de_treino - saida
+    ajustes = erro * sigmoid_derivativo(saida)
+    pesos_sinapticos += np.dot(camada_de_entrada.T, ajustes)
 
 print('Synaptic Weights: ')
-print(synaptic_weights)
+print(pesos_sinapticos)
 
 print('outputs:')
-print(outputs)
+print(saida)
 
 test_input = np.array([[-1, 0, -1, -1],
                        [ 1, 0,  1,  1]])
-final_output = sigmoid(np.dot(test_input, synaptic_weights))
+final_output = sigmoid(np.dot(test_input, pesos_sinapticos))
 
 print('Final Output: ')
 print(final_output)
 
-for a in outputs:
-    print(normalizer(a))
+for a in saida:
+    print(normalizador(a))
 
 for a in final_output:
-    print(normalizer(a))
+    print(normalizador(a))
