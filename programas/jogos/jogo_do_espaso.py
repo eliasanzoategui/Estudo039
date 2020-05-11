@@ -68,10 +68,10 @@ class App:
                 pyxel.rect(i.x - self.personagem1.x,i.y - self.personagem1.y + 256,1,1,9)
                 pyxel.rect(i.x - self.personagem1.x + 256,i.y - self.personagem1.y + 256,1,1,9)
             if i.tipo == 'moeda':
-                pyxel.rect(i.x,i.y,1,1,10)
-                pyxel.rect(i.x + 256,i.y,1,1,10)
-                pyxel.rect(i.x,i.y + 256,1,1,10)
-                pyxel.rect(i.x + 256,i.y + 256,1,1,10)
+                pyxel.rect(i.x - self.personagem1.x,i.y - self.personagem1.y,1,1,10)
+                pyxel.rect(i.x + 256 - self.personagem1,i.y - self.personagem1.y,1,1,10)
+                pyxel.rect(i.x - self.personagem1,i.y + 256 - self.personagem1.y,1,1,10)
+                pyxel.rect(i.x + 256 - self.personagem1,i.y + 256 - self.personagem1.y,1,1,10)
 
               
 

@@ -9,6 +9,7 @@ class jogo():
         self.fruta1 = Entidade('fruta',random.randint(0,255),random.randint(0,255),8)
         self.criatura1 = Entidade('criatura',100,100,9)
         self.jogador1 = Entidade('jogador',128,128,3)
+        self.pontos = 0
         self.entidades = [self.jogador1,self.criatura1,self.fruta1]
         pyxel.run(self.update,self.draw)
 
@@ -46,6 +47,14 @@ class jogo():
                     i.y = 256 - 10
                 if i.y - 10 < 0:
                     i.y = 0 + 10
+                for e in self.entidades:
+                    if e.tipo == 'fruta':
+                        if e.x < i.x + 10 and e.x > i.x - 10 and e.y < i.y + 10 and e.y > i.y -10:
+                            self.pontos += 1
+                            self.entidades.remove(e)
+                            fruta = Entidade('fruta',random.randint(0,255),random.randint(0,255),8)
+                            self.entidades.append(fruta)
+            # tipo fruta
             if i.tipo == 'fruta':
                 if i.x + 2 > 256:
                     i.x  = 256 - 2
@@ -62,6 +71,7 @@ class jogo():
 # desenha os itens na tela
     def draw(self):
         pyxel.cls(7)
+        pyxel.text(10,10,str(self.pontos),1)
         for i in self.entidades:
             if i.tipo == 'jogador':
                 pyxel.rect(i.x - 10,i.y - 10,20,20,i.cor)

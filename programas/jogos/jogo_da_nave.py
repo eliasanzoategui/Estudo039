@@ -19,34 +19,35 @@ class App:
         pyxel.run(self.update,self.draw)
 
     def update(self):
-        for i in self.entidades:
-            if i.tipo == 'jogador':
-                if i.vivo:
-                    i.semover()
-                    i.realocar()
-                    if self.oxigênio <= 0:
-                        i.morto
-                for e in self.entidades:
-                    if e.tipo == 'criatura':
-                        if i.x == e.x + 1:
-                            e.ex += i.ex
-                            i.ex += e.ex
-                        if i.x == e.x - 1:
-                            e.ex += i.ex
-                            i.ex += e.ex
-                        if i.y == e.y + 1:
-                            e.ey += i.ey
-                            i.ey += e.ey
-                        if i.y == e.y - 1:
-                            e.ey += i.ey
-                            i.ey += e.ey
-                        if i.x == e.x:
-                            e.ey += i.ey
-                            i.ey += e.ey
+        if self.jogador1.vivo:
+            for i in self.entidades:
+                if i.tipo == 'jogador':
+                    if i.vivo:
+                        i.semover()
+                        i.realocar()
+                        if self.oxigênio <= 0:
+                            i.morto
+                        for e in self.entidades:
+                            if e.tipo == 'criatura':
+                                if i.x == e.x + 1:
+                                    e.ex += i.ex
+                                    i.ex += e.ex
+                                if i.x == e.x - 1:
+                                    e.ex += i.ex
+                                    i.ex += e.ex
+                                if i.y == e.y + 1:
+                                    e.ey += i.ey
+                                    i.ey += e.ey
+                                if i.y == e.y - 1:
+                                    e.ey += i.ey
+                                    i.ey += e.ey
+                                if i.x == e.x:
+                                    e.ey += i.ey
+                                    i.ey += e.ey
 
             if i.tipo == 'criatura':
                 if i.vivo:
-                    i.realocar()
+                    i.mover_aleatoriamente()
         self.contador += 1
         if self.contador > self.limitador:
             self.limite = True
@@ -59,6 +60,8 @@ class App:
 
     def draw(self):
         pyxel.cls(0)
+        pyxel.text(0,0,str(self.jogador1.x),7)
+        pyxel.text(0,20,str(self.jogador1.y),7)
         for i in self.entidades:
             if i.tipo == 'jogador':
                 pyxel.rect(128,128,1,1,3)
@@ -102,6 +105,11 @@ class Entidade():
             self.ex -= 1
         if pyxel.btn(pyxel.KEY_RIGHT) and self.energia:
             self.ex += 1
+    def mover_aleatoriamente(self):
+        numero_aleatorio = random.randint(-2,2)
+        self.ex += numero_aleatorio
+        numero_aleatorio = random.randint(-2,2)
+        self.ey += numero_aleatorio
 
     def realocar(self):
         self.x += self.ex
