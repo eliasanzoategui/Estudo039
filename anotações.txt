@@ -1,0 +1,14 @@
+machine learning = aprendisado estatístico
+
+redes...
+-supervisionadas
+-não supervisionadas
+-semi-supervisionadas
+-aprendisado de reforço
+
+
+peso
+bias
+função de ativação
+
+ 
