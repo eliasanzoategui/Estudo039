@@ -11,4 +11,3 @@ peso
 bias
 função de ativação
 
- 
