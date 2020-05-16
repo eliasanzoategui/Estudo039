@@ -21,12 +21,14 @@ class jogo():
             if i.y > 256:
                 self.entidades.remove(i)
 
-        pass
+
+
     def draw(self):
         pyxel.cls(7)
         for i in self.entidades:
             pyxel.rect(i.x,i.y,1,1,5)
         pyxel.text(10,10,'-CHUVA AZUL-',5)
+
 
 
 
