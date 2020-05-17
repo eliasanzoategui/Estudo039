@@ -25,3 +25,6 @@ O Indentificatron é um programa, feito em Python (a princípio), que identifica
       - Identificador de imagem
 - Treinar uma rede neural
 - Executar
+
+
+## Primeira sprint do projeto
