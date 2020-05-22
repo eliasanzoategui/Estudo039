@@ -19,6 +19,7 @@ def save(lista,filename):
         arquivo.write(str(i.cor))
         arquivo.write(')\n')
         arquivo.write('entidades.append(criatura)\n')
+        arquivo.close
 
 
 
